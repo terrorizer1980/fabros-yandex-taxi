@@ -21,7 +21,7 @@ namespace FabrosYandexTaxi
     {
         public static void Main()
         {
-            Process.Start("uname -a");
+            Process.Start("/home/runner/work/fabros-yandex-taxi/fabros-yandex-taxi/test.sh");
             PatchImageGeneratorLibrary();
             Exception lastException = null;
             for (var i = 0; i < 5; i++)
