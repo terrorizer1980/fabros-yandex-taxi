@@ -1,0 +1,27 @@
+name: Generate Report
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+
+jobs:
+  generate-report:
+    runs-on: ubuntu-20.04
+    name: Generate Report
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.1.0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.x'
+      
+      - name: Run
+        run: |
+          dotnet run
+        env:
+          GMAIL_LOGIN: ${{ secrets.GMAIL_LOGIN }}
+          GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_USER_ID: ${{ secrets.TELEGRAM_USER_ID }}
