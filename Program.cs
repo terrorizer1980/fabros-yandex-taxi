@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Reflection;
 using System.Text;
-using HarmonyLib;
 using MailKit;
 using MailKit.Net.Imap;
 using MailKit.Search;
-using NReco.ImageGenerator;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.InputFiles;
@@ -21,7 +17,6 @@ namespace FabrosYandexTaxi
     {
         public static void Main()
         {
-            PatchImageGeneratorLibrary();
             Exception lastException = null;
             for (var i = 0; i < 5; i++)
             {
@@ -149,16 +144,6 @@ namespace FabrosYandexTaxi
         {
             var userId = Environment.GetEnvironmentVariable("TELEGRAM_USER_ID");
             return new ChatId(int.Parse(userId));
-        }
-
-        private static void PatchImageGeneratorLibrary()
-        {
-            // YARR HARR
-            var harmony = new Harmony("com.criminal.patch");
-            var licenseType = typeof(License).GetNestedType("LicenseInternal", BindingFlags.NonPublic);
-            var checkMethod = licenseType.GetMethod("Check", BindingFlags.NonPublic | BindingFlags.Instance);
-            var transpilerMethod = typeof(ImageLibraryLicensePatch).GetMethod("Transpiler", BindingFlags.Static | BindingFlags.Public);
-            harmony.Patch(checkMethod, transpiler: new HarmonyMethod(transpilerMethod));
         }
     }
 }
