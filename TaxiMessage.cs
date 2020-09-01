@@ -34,9 +34,13 @@ namespace FabrosYandexTaxi
 
         public void GenerateImage(Stream stream)
         {
-            var htmlToImageConv = new HtmlToImageConverter();
+            var converter = new HtmlToImageConverter();
+            if (Environment.OSVersion.Platform == PlatformID.Unix)
+            {
+                converter.WkHtmlToImageExeName = "wkhtmltoimage";
+            }
             using var memoryStream = new MemoryStream();
-            htmlToImageConv.GenerateImage(_bodyHtml, "png", memoryStream);
+            converter.GenerateImage(_bodyHtml, "png", memoryStream);
             memoryStream.Position = 0;
             using var image = Image.FromStream(memoryStream);
             image.Save(stream, ImageFormat.Png);
