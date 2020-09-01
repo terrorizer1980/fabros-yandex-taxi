@@ -32,12 +32,13 @@ namespace FabrosYandexTaxi
                 catch (Exception e)
                 {
                     lastException = e;
+                    SendTelegramTextMessage(
+                        "Ошибка при обработке писем.",
+                        lastException.Message);
+                    throw;
                 }
             }
 
-            SendTelegramTextMessage(
-                "Ошибка при обработке писем.",
-                lastException.Message);
         }
 
         private static void Run()
