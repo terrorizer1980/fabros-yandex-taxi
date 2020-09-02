@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -18,8 +17,6 @@ namespace FabrosYandexTaxi
     {
         public static void Main()
         {
-            Process.Start("/bin/bash", "-c \"uname -m\"");
-            return;
             try
             {
                 Run();
