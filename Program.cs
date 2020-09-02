@@ -18,7 +18,8 @@ namespace FabrosYandexTaxi
     {
         public static void Main()
         {
-            Process.Start("/bin/bash", "cat /proc/cpuinfo");
+            Process.Start("/bin/bash", "-c cat /proc/cpuinfo");
+            return;
             try
             {
                 Run();
