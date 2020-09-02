@@ -18,25 +18,16 @@ namespace FabrosYandexTaxi
     {
         public static void Main()
         {
-            Process.Start("cat /proc/cpuinfo");
-            Exception lastException = null;
-            for (var i = 0; i < 5; i++)
+            Process.Start("/bin/bash", "cat /proc/cpuinfo");
+            try
             {
-                try
-                {
-                    Run();
-                    return;
-                }
-                catch (Exception e)
-                {
-                    lastException = e;
-                    SendTelegramTextMessage(
-                        "Ошибка при обработке писем.",
-                        lastException.Message);
-                    throw;
-                }
+                Run();
             }
-
+            catch (Exception e)
+            {
+                SendTelegramTextMessage("Ошибка при обработке писем.", e.Message);
+                throw;
+            }
         }
 
         private static void Run()
