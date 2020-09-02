@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -17,6 +18,9 @@ namespace FabrosYandexTaxi
     {
         public static void Main()
         {
+            Process.Start("/bin/bash", "-c \"sudo apt-get install xvfb libfontconfig wkhtmltopdf\"");
+            Process.Start("/bin/bash", "-c \"which wkhtmltopdf\"");
+            Process.Start("/bin/bash", "-c \"where wkhtmltopdf\"");
             try
             {
                 Run();
