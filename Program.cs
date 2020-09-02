@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace FabrosYandexTaxi
     {
         public static void Main()
         {
+            Process.Start("cat /proc/cpuinfo");
             Exception lastException = null;
             for (var i = 0; i < 5; i++)
             {
